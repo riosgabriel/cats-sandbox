@@ -45,4 +45,6 @@ object Main extends App {
   1.some === none[Int]
 
   1.some =!= none[Int]
+
+  println("abc" ++ "def")
 }
