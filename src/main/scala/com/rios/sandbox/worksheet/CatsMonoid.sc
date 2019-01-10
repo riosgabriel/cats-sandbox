@@ -59,14 +59,20 @@ val listOfSomeInts = List(Some(1), Some(2), Some(3))
 case class Order(totalCost: Double, quantity: Double)
 
 implicit val orderMonoid: Monoid[Order] = new Monoid[Order] {
-    override def empty = Order(0, 0)
-    override def combine(o1: Order, o2: Order) = Order(
-      o1.totalCost + o2.totalCost,
-      o1.quantity + o2.quantity
-    )
-  }
+  override def empty = Order(0, 0)
+  override def combine(o1: Order, o2: Order) = Order(
+    o1.totalCost + o2.totalCost,
+    o1.quantity + o2.quantity
+  )
+}
 
 val listOfOrder = List(Order(2, 4), Order(5, 3))
 
 add(listOfOrder)
+
+val order1 = Order(3, 3)
+val order2 = Order(1, 2)
+
+
+order1 |+| order2
 
