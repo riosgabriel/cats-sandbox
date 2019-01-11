@@ -1,13 +1,12 @@
 package com.rios.sandbox.model
 
-import cats.{ Eq, Show }
 import cats.instances.int._
-import cats.instances.string._
 import cats.instances.option._
-import cats.syntax.show._
+import cats.instances.string._
 import cats.syntax.eq._
-import com.rios.sandbox.Printable
-
+import cats.syntax.show._
+import cats.{ Eq, Show }
+import com.rios.sandbox.typeclasses.Printable
 final case class Cat(name: String, age: Int, color: String)
 
 object Cat {
@@ -23,7 +22,6 @@ object Cat {
     (cat1.age == cat2.age) &&
     (cat1.color == cat2.color)
   }
-
 }
 
 object CatMain extends App {
@@ -33,7 +31,7 @@ object CatMain extends App {
 
   Printable.print(tom)
 
-  import com.rios.sandbox.PrintableSintax._
+  import com.rios.sandbox.typeclasses.PrintableSintax._
 
   tom.print
 

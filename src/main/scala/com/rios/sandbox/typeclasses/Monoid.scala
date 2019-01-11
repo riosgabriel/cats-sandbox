@@ -1,4 +1,4 @@
-package com.rios.sandbox.model
+package com.rios.sandbox.typeclasses
 
 trait Semigroup[A] {
 

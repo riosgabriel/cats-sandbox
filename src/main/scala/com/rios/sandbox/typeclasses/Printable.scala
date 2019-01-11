@@ -1,8 +1,11 @@
-package com.rios.sandbox
+package com.rios.sandbox.typeclasses
 
 trait Printable[A] {
+  self ⇒
 
   def format(value: A): String
+
+  def contramap[B](f: B ⇒ A): Printable[B] = (value: B) ⇒ self.format(f(value))
 
 }
 

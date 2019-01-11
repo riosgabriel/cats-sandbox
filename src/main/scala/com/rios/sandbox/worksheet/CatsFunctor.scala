@@ -4,7 +4,6 @@ import cats.instances.function._
 import cats.syntax.functor._
 import cats.instances.list._
 import cats.instances.option._
-import com.rios.sandbox.model.Cat
 
 /*
   Using an object instead of a worksheet,
