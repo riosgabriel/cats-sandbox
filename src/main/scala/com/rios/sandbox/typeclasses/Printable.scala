@@ -9,11 +9,9 @@ trait Printable[A] {
 
 }
 
-object PrintableInstances {
+final case class Box[A](value: A)
 
-  implicit val printableString = new Printable[String] {
-    override def format(value: String): String = s"The value $value is a String"
-  }
+object PrintableInstances {
 
   implicit val optPrintableString = new Printable[Option[String]] {
     override def format(value: Option[String]): String = value match {
@@ -25,6 +23,20 @@ object PrintableInstances {
   implicit val printableInt = new Printable[Int] {
     override def format(value: Int): String = s"The value $value is an Int"
   }
+
+  implicit val stringPrintable: Printable[String] = new Printable[String] {
+    override def format(value: String): String = "\"" + value + "\""
+  }
+
+  implicit val booleanPrintable: Printable[Boolean] = new Printable[Boolean] {
+    override def format(value: Boolean): String = if (value) "yes" else "no"
+  }
+
+//  implicit def boxStringPrintable[A](implicit p: Printable[A]) = new Printable[Box[A]] {
+//    override def format(box: Box[A]): String = p.format(box.value)
+//  }
+
+  implicit def boxStringPrintableWithContramap[A](implicit p: Printable[A]) = p.contramap[Box[A]](_.value)
 }
 
 object Printable {
@@ -62,5 +74,12 @@ object PrintableMain extends App {
   Printable.print(stringValue)
   Printable.print(someStringValue)
   Printable.print(noneValue)
+
+  Printable.print("hello")
+  Printable.print(true)
+
+  Printable.print(Box("Hello world"))
+
+  Printable.print(Box(true))
 
 }

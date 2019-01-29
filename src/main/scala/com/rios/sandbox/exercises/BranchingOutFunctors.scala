@@ -29,5 +29,5 @@ object BranchingOutFunctors extends App {
 
   println(tree.map(_ * 2))
 
-  print(Tree.leaf(100).map(_ + 50))
+  println(Tree.leaf(100).map(_ + 50))
 }
